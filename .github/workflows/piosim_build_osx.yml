@@ -1,17 +1,16 @@
-name: Build PioSim For Linux 
+name: Renode RP2040 OSX - Tests
 
 on:
   workflow_call:
 
 jobs:
-  build_piosim_linux:
-    name: "PioSim Linux"
-    runs-on: ubuntu-24.04
+  osx_rp2040_tests:
+    name: "Renode MacOS"
+    runs-on: macos-14 
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
       - name: Build Pio Simulator 
         shell: bash
         run: |

@@ -7,6 +7,9 @@ on:
     branches: [main]
 
 jobs:
-  run_linux_tests:
-    name: Renode Linux Tests
+  build_for_linux:
+    name: PioSim Linux Build 
     uses: ./.github/workflows/piosim_build_linux.yml
+  build_for_osx:
+    name: PioSim MacOS Build 
+    uses: ./.github/workflows/piosim_build_osx.yml
