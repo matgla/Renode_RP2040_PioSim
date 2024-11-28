@@ -1,0 +1,33 @@
+name: Build PioSim For Windows 
+on:
+  workflow_call:
+
+jobs:
+  windows_rp2040_tests:
+    name: "PioSim Windows"
+    runs-on: windows-2022 
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true 
+          install: >-
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-gcc 
+            mingw-w64-x86_64-make
+
+      - name: Build Pio Simulator 
+        shell: msys2 {0}
+        run: |
+          mkdir build 
+          cd build 
+          cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
+          cmake --build .
+      
+      - uses: actions/upload-artifact@v4
+        with: 
+          name: piosim-windows
+          path: build/source/libpiosim.dll
+

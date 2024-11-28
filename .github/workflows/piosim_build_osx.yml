@@ -1,0 +1,26 @@
+name: Build PioSim For MacOS 
+
+on:
+  workflow_call:
+
+jobs:
+  osx_rp2040_tests:
+    name: "PioSim MacOS"
+    runs-on: macos-14 
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Build Pio Simulator 
+        shell: bash
+        run: |
+          mkdir build 
+          cd build 
+          cmake .. -DCMAKE_BUILD_TYPE=Release
+          cmake --build .
+      - uses: actions/upload-artifact@v4
+        with: 
+          name: piosim-macos
+          path: build/source/libpiosim.dylib
+
+

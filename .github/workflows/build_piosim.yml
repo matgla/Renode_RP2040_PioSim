@@ -1,0 +1,58 @@
+name: Build Pio Simulator
+
+on:
+  push:
+    tags:
+      - '*'
+  pull_request: 
+    branches: [main]
+
+jobs:
+  build_for_linux:
+    name: PioSim Linux Build 
+    uses: ./.github/workflows/piosim_build_linux.yml
+  build_for_osx:
+    name: PioSim MacOS Build 
+    uses: ./.github/workflows/piosim_build_osx.yml
+  build_for_windows:
+    name: PioSim Windows Build 
+    uses: ./.github/workflows/piosim_build_windows.yml
+  
+  fetch_artifacts:
+    name: Fetch artifacts
+    needs: [build_for_linux, build_for_osx, build_for_windows]
+    runs-on: ubuntu-latest
+    permissions: 
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+
+      - if: startsWith(github.ref, 'refs/tags/')
+        name: Create Archive 
+        id: create_archive
+        shell: bash
+        run: |
+          mkdir target
+          cd target 
+          cp ../piosim-linux/libpiosim.so .
+          cp ../piosim-windows/libpiosim.dll .
+          ls -la ..
+          ls -la ../piosim-macos
+          cp ../piosim-macos/libpiosim.dylib .
+          zip libpiosim.zip libpiosim.so libpiosim.dll libpiosim.dylib
+
+      - if: startsWith(github.ref, 'refs/tags/')
+        name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          artifacts: "target/libpiosim.zip"
+
+      - if: startsWith(github.ref, 'refs/tags/')
+        uses: GeekyEggo/delete-artifact@v5.1.0
+        with:
+          name: |
+            piosim-macos
+            piosim-windows
+            piosim-linux
+

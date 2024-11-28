@@ -1,0 +1,26 @@
+name: Build PioSim For Linux 
+
+on:
+  workflow_call:
+
+jobs:
+  build_piosim_linux:
+    name: "PioSim Linux"
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Build Pio Simulator 
+        shell: bash
+        run: |
+          mkdir build 
+          cd build 
+          cmake .. -DCMAKE_BUILD_TYPE=Release
+          cmake --build .
+      - uses: actions/upload-artifact@v4
+        with: 
+          name: piosim-linux
+          path: build/source/libpiosim.so
+
