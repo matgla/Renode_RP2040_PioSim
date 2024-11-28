@@ -13,7 +13,7 @@ jobs:
           fetch-depth: 0
       - name: Install GCC 
         run: |
-          sudo apt install gcc-14 g++-14
+          sudo apt install -y gcc-14 g++-14
           sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 100 --slave /usr/bin/g++ g++ /usr/bin/g++-14 --slave /usr/bin/gcov gcov /usr/bin/gcov-14
           sudo update-alternatives --set gcc /usr/bin/gcc-14
 
