@@ -4,14 +4,14 @@ on:
 
 jobs:
   osx_rp2040_tests:
-    name: "Renode MacOS"
+    name: "PioSim Windows"
     runs-on: macos-14 
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Build Pio Simulator 
-        shell: bash
+        shell: msys2bash.cmd 
         run: |
           mkdir build 
           cd build 
