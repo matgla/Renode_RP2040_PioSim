@@ -6,16 +6,16 @@ on:
 jobs:
   build_piosim_linux:
     name: "PioSim Linux"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Install GCC 
-        run: |
-          sudo apt install -y gcc-14 g++-14
-          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 100 --slave /usr/bin/g++ g++ /usr/bin/g++-14 --slave /usr/bin/gcov gcov /usr/bin/gcov-14
-          sudo update-alternatives --set gcc /usr/bin/gcc-14
+      # - name: Install GCC 
+      #   run: |
+      #     sudo apt install -y gcc-14 g++-14
+      #     sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 100 --slave /usr/bin/g++ g++ /usr/bin/g++-14 --slave /usr/bin/gcov gcov /usr/bin/gcov-14
+      #     sudo update-alternatives --set gcc /usr/bin/gcc-14
 
       - name: Build Pio Simulator 
         shell: bash
