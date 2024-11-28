@@ -3,9 +3,9 @@ on:
   workflow_call:
 
 jobs:
-  osx_rp2040_tests:
+  windows_rp2040_tests:
     name: "PioSim Windows"
-    runs-on: macos-14 
+    runs-on: windows-2022 
     steps:
       - uses: actions/checkout@v3
         with:
