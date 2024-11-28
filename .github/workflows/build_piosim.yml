@@ -3,10 +3,10 @@ name: Build Pio Simulator
 on:
   push:
     branches: [main]
+    tags:
+      - '*'
   pull_request: 
     branches: [main]
-  tags:
-    - '*'
 
 jobs:
   build_for_linux:
