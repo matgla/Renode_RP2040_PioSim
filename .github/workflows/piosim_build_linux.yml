@@ -22,5 +22,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         with: 
           name: piosim-linux
-          path: build/source/libpiosim.dll
+          path: build/source/libpiosim.so
 
