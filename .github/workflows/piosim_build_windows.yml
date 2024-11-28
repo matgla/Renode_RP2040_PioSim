@@ -25,3 +25,9 @@ jobs:
           cd build 
           cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
           cmake --build .
+      
+      - uses: actions/upload-artifact@v4
+        with: 
+          name: piosim-windows
+          path: build/source/libpiosim.dll
+
