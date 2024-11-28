@@ -1,5 +1,4 @@
-name: Build PioSim For MacOS 
-
+name: Build PioSim For Windows 
 on:
   workflow_call:
 
@@ -16,5 +15,5 @@ jobs:
         run: |
           mkdir build 
           cd build 
-          cmake .. -DCMAKE_BUILD_TYPE=Release
+          cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
           cmake --build .

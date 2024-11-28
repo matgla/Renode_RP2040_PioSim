@@ -13,3 +13,6 @@ jobs:
   build_for_osx:
     name: PioSim MacOS Build 
     uses: ./.github/workflows/piosim_build_osx.yml
+  build_for_windows:
+    name: PioSim Windows Build 
+    uses: ./.github/workflows/piosim_build_windows.yml
