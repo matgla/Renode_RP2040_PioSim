@@ -14,3 +14,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+  run_linux_tests:
+    name: Renode Linux Tests
+    uses: ./.github/workflows/piosim_build_linux.yml
