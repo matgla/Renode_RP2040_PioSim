@@ -7,11 +7,6 @@ jobs:
   build_piosim_linux:
     name: "PioSim Linux"
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/matgla/yasldtoolchain:0.4.1
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
         with:

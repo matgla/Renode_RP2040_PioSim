@@ -7,14 +7,6 @@ on:
     branches: [main]
 
 jobs:
-  build_pio_simulator:
-    name: "Build Pio Simulator for all platforms"
-    runs-on: ubuntu-latest 
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
   run_linux_tests:
     name: Renode Linux Tests
     uses: ./.github/workflows/piosim_build_linux.yml
